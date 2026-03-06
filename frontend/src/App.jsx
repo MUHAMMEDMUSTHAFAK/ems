@@ -4,15 +4,15 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import EmployeeDashboard from "./pages/EmployeeDashboard.jsx";
-import PrivetRoutes from "./utils/PrivetRoutes.jsx";
+import PrivateRoutes from "./utils/PrivateRoutes.jsx";
 import { ProtectedRoutes } from "./utils/ProtectedRoutes.jsx";
 import AdminSummury from "./components/Dashboard/AdminSummury.jsx";
 import DepartmentList from "./components/Departments/DepartmentList.jsx";
 import { AddDepartment } from "./components/Departments/AddDepartment.jsx";
 import { EditDepartment } from "./components/Departments/EditDepartment.jsx";
-import List from "./components/Employee/list.jsx";
+import List from "./components/Employee/List.jsx";
 import Add from "./components/Employee/Add.jsx";
-import { View } from "./components/Employee/view.jsx";
+import { View } from "./components/Employee/View.jsx";
 import { Edit } from "./components/Employee/Edit.jsx";
 import AddSalary from "./components/Salary/Add.jsx";
 import { ViewSalary } from "./components/Salary/ViewSalary.jsx";
@@ -34,11 +34,11 @@ function App() {
         <Route
           path="/admin-dashboard"
           element={
-            <PrivetRoutes>
+            <PrivateRoutes>
               <ProtectedRoutes requiredRole={"admin"}>
                 <AdminDashboard />
               </ProtectedRoutes>
-            </PrivetRoutes>
+            </PrivateRoutes>
           }
         >
           <Route index element={<AdminSummury />} />
@@ -58,9 +58,9 @@ function App() {
         <Route
           path="/employee-dashboard"
           element={
-            <PrivetRoutes>
+            <PrivateRoutes>
               <EmployeeDashboard />
-            </PrivetRoutes>
+            </PrivateRoutes>
           }
         >
           <Route index element={<Summary />} />
