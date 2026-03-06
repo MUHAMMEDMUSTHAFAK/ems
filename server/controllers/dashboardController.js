@@ -1,5 +1,5 @@
 import Employee from "../models/Employee.js";
-import Department from "../models/departmentModel.js";
+import Department from "../models/DepartmentModel.js";
 import Leave from "../models/Leave.js";
 
 const getSummary = async (req, res) => {
