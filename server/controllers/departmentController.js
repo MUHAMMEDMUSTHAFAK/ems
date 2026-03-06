@@ -1,5 +1,5 @@
 import express from "express";
-import Department from "../models/departmentModel.js";
+import Department from "../models/DepartmentModel.js";
 
 const getDepartments = async (req, res) => {
   try {
