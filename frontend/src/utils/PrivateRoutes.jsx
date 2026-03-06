@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth } from "../context/authContext";
 import { Navigate } from "react-router-dom";
 
-const PrivetRoutes = ({ children }) => {
+const PrivateRoutes = ({ children }) => {
   const { user, loading } = useAuth();
 
   if (loading) {
