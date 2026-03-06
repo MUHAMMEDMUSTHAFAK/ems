@@ -4,7 +4,7 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import EmployeeDashboard from "./pages/EmployeeDashboard.jsx";
-import PrivetRoutes from "./utils/privetRoutes.jsx";
+import PrivetRoutes from "./utils/PrivetRoutes.jsx";
 import { ProtectedRoutes } from "./utils/ProtectedRoutes.jsx";
 import AdminSummury from "./components/Dashboard/AdminSummury.jsx";
 import DepartmentList from "./components/Departments/DepartmentList.jsx";
