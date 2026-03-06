@@ -9,21 +9,20 @@ import dashboardRoutes from "./routes/dashboard.js";
 
 import dotenv from "dotenv";
 dotenv.config();
+
 import connectToDatabase from "./db/db.js";
 
-console.log("JWT_SECRET:", process.env.JWT_SECRET);
 connectToDatabase();
 
 const app = express();
 
-import cors from "cors";
-
 app.use(
   cors({
-    origin: "https://your-frontend-url.onrender.com",
+    origin: "http://localhost:5173",
     credentials: true,
   }),
 );
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public/uploads"));
@@ -36,6 +35,7 @@ app.use("/api/leave", leaveRouter);
 app.use("/api/admin-dashboard/dashboard", dashboardRoutes);
 
 const PORT = process.env.PORT || 8000;
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
