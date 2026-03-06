@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import axios from "axios";
+import axios from "../../utils/axios";
 
 const List = () => {
   const { user } = useAuth();
@@ -10,14 +10,11 @@ const List = () => {
 
   const fetchLeaves = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:8000/api/leave/${user._id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+      const response = await axios.get(`/leave/${user._id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-      );
+      });
 
       if (response.data.success) {
         setLeaves(response.data.leaves);

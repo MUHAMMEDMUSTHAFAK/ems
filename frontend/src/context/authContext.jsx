@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from "../utils/axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 export const userContext = createContext();
 
 const AuthContext = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // start with true while verifying
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const verifyUser = async () => {
@@ -16,14 +16,11 @@ const AuthContext = ({ children }) => {
           return;
         }
 
-        const response = await axios.get(
-          "http://localhost:8000/api/auth/verify",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        const response = await axios.get("/auth/verify", {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
 
         if (response.data?.success) {
           setUser(response.data.user);

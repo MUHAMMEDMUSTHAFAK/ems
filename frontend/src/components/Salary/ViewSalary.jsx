@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../../utils/axios";
 
 export const ViewSalary = () => {
   const [salaries, setSalaries] = useState([]);
@@ -11,12 +11,12 @@ export const ViewSalary = () => {
 
   const fetchSalaries = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/salary/${id}`, {
+      const response = await axios.get(`/salary/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log(response.data)
+      console.log(response.data);
 
       if (response.data.success) {
         setSalaries(response.data.salary);
@@ -36,7 +36,7 @@ export const ViewSalary = () => {
   const filterSalaries = (e) => {
     const value = e.target.value.toLowerCase();
     const result = salaries.filter((item) =>
-      item.employeeId.employeeId.toLowerCase().includes(value)
+      item.employeeId.employeeId.toLowerCase().includes(value),
     );
     setFilteredSalaries(result);
   };
@@ -77,7 +77,9 @@ export const ViewSalary = () => {
                 {filteredSalaries.map((salary) => (
                   <tr key={salary._id} className="bg-white border-b">
                     <td className="px-6 py-3">{sno++}</td>
-                    <td className="px-6 py-3">{salary.employeeId.employeeId}</td>
+                    <td className="px-6 py-3">
+                      {salary.employeeId.employeeId}
+                    </td>
                     <td className="px-6 py-3">{salary.basicSalary}</td>
                     <td className="px-6 py-3">{salary.allowances}</td>
                     <td className="px-6 py-3">{salary.deductions}</td>

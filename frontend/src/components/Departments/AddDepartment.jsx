@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../utils/axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,15 +18,11 @@ export const AddDepartment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/department/add",
-        department,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const response = await axios.post("/department/add", department, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
       if (response.data.success) {
         navigate("/admin-dashboard/departments");
@@ -65,10 +61,7 @@ export const AddDepartment = () => {
               className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none resize-none h-[48px] transition"
             ></textarea>
 
-            <button
-              
-              className="bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-md"
-            >
+            <button className="bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-md">
               Add Department
             </button>
           </div>

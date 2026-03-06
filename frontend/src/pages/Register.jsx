@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../utils/axios";
 import { useNavigate } from "react-router-dom";
 import loginbg from "../assets/loginbg.jpeg";
 
@@ -19,15 +19,12 @@ function Register() {
     setSuccess(null);
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/auth/register",
-        {
-          name,
-          email,
-          password,
-          role,
-        },
-      );
+      const response = await axios.post("/auth/register", {
+        name,
+        email,
+        password,
+        role,
+      });
       console.log(response.data);
 
       if (response.data.success) {

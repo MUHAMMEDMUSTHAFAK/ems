@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../utils/axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import loginbg from "../assets/loginbg.jpeg";
@@ -17,13 +17,10 @@ function Login() {
     setError(null);
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/auth/login",
-        {
-          email,
-          password,
-        },
-      );
+      const response = await axios.post("/auth/login", {
+        email,
+        password,
+      });
       console.log(response.data);
 
       if (response.data.success) {

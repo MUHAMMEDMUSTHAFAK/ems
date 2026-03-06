@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchDepartments } from "../../utils/EmployeeHelper";
-import axios from "axios";
+import axios from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 
 const Add = () => {
@@ -54,15 +54,11 @@ const Add = () => {
     });
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/employee/add",
-        formDataobj,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+      const response = await axios.post("/employee/add", formDataobj, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-      );
+      });
 
       if (response.data.success) {
         navigate("/admin-dashboard/employees");
