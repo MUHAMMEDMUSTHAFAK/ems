@@ -9,7 +9,7 @@ import {
   FaTimesCircle,
   FaUsers,
 } from "react-icons/fa";
-import axios from "axios";
+import axios from "../../utils/axios";
 
 const AdminSummury = () => {
   const [summary, setSummary] = useState(null);
@@ -17,14 +17,11 @@ const AdminSummury = () => {
   useEffect(() => {
     const fetchSummary = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:8000/api/admin-dashboard/dashboard/summary",
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
+        const response = await axios.get("/admin-dashboard/dashboard/summary", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
         console.log("Axios response data:", response.data);
         setSummary(response.data);
       } catch (error) {
@@ -70,7 +67,9 @@ const AdminSummury = () => {
         />
       </div>
 
-      <h4 className="text-xl font-semibold text-gray-800 mb-4">Leave Details</h4>
+      <h4 className="text-xl font-semibold text-gray-800 mb-4">
+        Leave Details
+      </h4>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <SummaryCard
           icon={<FaFileAlt />}
